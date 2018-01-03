@@ -1,0 +1,27 @@
+@import '~@angular/material/theming';
+// mixin name will be used in main style.scss
+@mixin app-home-component-theme($theme) {
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .msb-primary {
+    background-color: mat-color($primary);
+  }
+
+  .msb-accent {
+    background-color: mat-color($accent);
+  }
+
+  .msb-warn {
+    background-color: mat-color($warn);
+  }
+
+  .msb-accent .mat-simple-snackbar-action {
+    color: mat-color($primary);
+  }
+}

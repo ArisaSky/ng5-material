@@ -1,0 +1,51 @@
+<div mat-typography fxLayout="row" class="main-container"
+  infiniteScroll
+  [infiniteScrollDistance]="0"
+  (scrolled)="onScroll()
+  ">
+  <mat-card fxFlex="95%" class="form-card">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row fxLayout="row">
+        <span>Todo</span>
+        <span class="spacer"></span>
+        <mat-chip-list><mat-chip>{{ tasklistcount }}</mat-chip></mat-chip-list>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card-content fxLayout.xs="column" fxLayout.md="row">
+      <div class="form-container" ngClass.gt-xs="form-margin-right" fxFlex="40%">
+        <form [formGroup]="form" fxLayout="column">
+          <mat-form-field>
+            <input matInput placeholder="Title" type="text" [formControl]="title" required>
+            <span matPrefix><mat-icon>turned_in</mat-icon></span>
+            <mat-error *ngIf="title.invalid">This field is required.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea rows="5" matInput placeholder="Details" type="text" [formControl]="details" matTextareaAutosize matAutosizeMinRows="12" required></textarea>
+            <span matPrefix><mat-icon>comment</mat-icon></span>
+            <mat-error *ngIf="details.invalid">This field is required.</mat-error>
+          </mat-form-field>
+        </form>
+        <button mat-button color="primary" (click)="submitTask()" [disabled]="!form.valid">SUBMIT</button>
+      </div>
+      <div fxLayout="column" fxFlex="100%" [@tasklistAnimation]="tasklistcount">
+        <div class="todo-container" *ngFor="let task of tasklist; let i = index">
+          <mat-card class="todo-card-no-right-margin">
+            <mat-toolbar class="todo-header">
+              <mat-toolbar-row fxLayout="row">
+                <div fxFlex="60%">
+                  <span fittext [maxFontSize]="30">{{ task.title }}</span>
+                </div>
+                <span class="spacer"></span>
+                <button mat-mini-fab (click)="editTask(i)"><mat-icon class="icon">edit</mat-icon></button>
+                <button mat-mini-fab (click)="deleteTask(i)"><mat-icon class="icon">delete</mat-icon></button>
+              </mat-toolbar-row>
+            </mat-toolbar>
+            <mat-card-content class="todo-detail" [innerHtml]="task.details">
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <mat-spinner *ngIf="isloading" fxFlexAlign="center"></mat-spinner>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

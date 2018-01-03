@@ -1,0 +1,8 @@
+$app-light-primary: mat-palette($mat-indigo, 50);
+$app-light-accent: mat-palette($mat-blue, A200);
+$app-light-warn: mat-palette($mat-deep-orange, A400);
+$app-light-theme: mat-light-theme(
+    $app-light-primary,
+    $app-light-accent,
+    $app-light-warn
+);
