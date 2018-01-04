@@ -2,7 +2,7 @@
   infiniteScroll
   [infiniteScrollDistance]="0"
   (scrolled)="onScroll()
-  ">
+  " [@tasklistAnimation]="tasklistcount">
   <mat-card fxFlex="95%" class="form-card">
     <mat-toolbar color="primary">
       <mat-toolbar-row fxLayout="row">
@@ -27,7 +27,7 @@
         </form>
         <button mat-button color="primary" (click)="submitTask()" [disabled]="!form.valid">SUBMIT</button>
       </div>
-      <div fxLayout="column" fxFlex="100%" [@tasklistAnimation]="tasklistcount">
+      <div fxLayout="column" fxFlex="100%">
         <div class="todo-container" *ngFor="let task of tasklist; let i = index">
           <mat-card class="todo-card-no-right-margin">
             <mat-toolbar class="todo-header">
