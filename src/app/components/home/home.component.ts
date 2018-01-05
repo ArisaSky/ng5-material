@@ -103,6 +103,7 @@ export class HomeComponent implements OnInit {
   get title() { return this.form.get('title') }
   get details() { return this.form.get('details') }
 
+  // actions
   getTasklist(skip, limit) {
     this.ts.getTasklist(skip, limit).subscribe(res => {
       this.tasklist = res;
